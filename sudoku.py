@@ -6,14 +6,14 @@ class Sudoku:
     def __init__(self):
         self.okno = tk.Tk()
         self.vnosi = []
-        self.tezavnost="lahko"
+        self.tezavnost = "lahko"
         tk.Button(self.okno, text="Lahko", command=self.zacni_lahko_igro).grid(row=10,column=10)
         tk.Button(self.okno, text="Srednje", command=self.zacni_srednjo_igro).grid(row=11,column=10)
         tk.Button(self.okno, text="Težko", command=self.zacni_tezko_igro).grid(row=12,column=10)
-        self.opozorilo=tk.StringVar()
+        self.opozorilo = tk.StringVar()
         tk.Label(textvariable=self.opozorilo, fg="red").grid(row=13,column=10)
         
-    def vrednosti(self,seznam):
+    def vrednosti(self, seznam):
         s = set()
         for x in seznam:
             if x in s:
@@ -42,11 +42,11 @@ class Sudoku:
                 return False
             
         ### po kvadrantih
-        for i in range(0,9,3): 
-            for j in range(0,9,3):
+        for i in range(0, 9, 3): 
+            for j in range(0, 9, 3):
                 seznam = []
-                for k in range(i,i+3): 
-                    for l in range(j,j+3):
+                for k in range(i, i + 3): 
+                    for l in range(j, j + 3):
                         if self.vnosi[k][l].get() != "": 
                             seznam.append(self.vnosi[k][l].get())
                 if self.vrednosti(seznam) == False:
@@ -79,9 +79,9 @@ class Sudoku:
     def sprazni_celice(self, st_celic):
         stevec=0
         while stevec < st_celic:
-            randX=rnd.randint(0, 8)
-            randY=rnd.randint(0, 8)
-            if self.vnosi[randX][randY].get()!= "":
+            randX = rnd.randint(0, 8)
+            randY = rnd.randint(0, 8)
+            if self.vnosi[randX][randY].get() != "":
                 self.vnosi[randX][randY].delete(0, 'end')
                 stevec+=1        
 
@@ -92,12 +92,12 @@ class Sudoku:
                 self.vnosi.append([])
                 line = dat.readline()
                 for y in range(9):
-                    vnosno_polje = tk.Entry(self.okno, borderwidth = 5,
-                                            width = 2, validate = "focusout",
-                                            validatecommand = self.po_vnosu)
+                    vnosno_polje = tk.Entry(self.okno, borderwidth=5,
+                                            width=2, validate="focusout",
+                                            validatecommand=self.po_vnosu)
                     vnosno_polje.insert(0, line[y])
                     self.vnosi[x].append(vnosno_polje)
-                    vnosno_polje.grid(row = x, column = y)
+                    vnosno_polje.grid(row=x, column=y)
 
     def zacni_lahko_igro(self):
         self.preberi_iz_datoteke()
@@ -110,5 +110,5 @@ class Sudoku:
     def zacni_tezko_igro(self):
         self.preberi_iz_datoteke()
         self.sprazni_celice(70)
-            
+
 igra = Sudoku()
