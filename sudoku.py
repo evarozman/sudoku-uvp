@@ -61,10 +61,10 @@ class Sudoku:
         for i in range(9):
             for j in range(9):
                 if self.vnosi[i][j].get() != "" and int(self.vnosi[i][j].get()) > 9:
-                    self.vnosi[i][j].config(fg='red')
+                    self.vnosi[i][j].config(fg="red")
                     pravilno=False
                 else:
-                    self.vnosi[i][j].config(fg='black')
+                    self.vnosi[i][j].config(fg="black")
 
                 if self.vnosi[i][j].get() != "" and int(self.vnosi[i][j].get()) <= 9:
                     st_pravilnih += 1
@@ -77,13 +77,13 @@ class Sudoku:
                 tk.Label(text="Sudoku rešen!", fg="green").grid(row=14,column=10)
                         
     def sprazni_celice(self, st_celic):
-        stevec=0
+        stevec = 0
         while stevec < st_celic:
             randX = rnd.randint(0, 8)
             randY = rnd.randint(0, 8)
             if self.vnosi[randX][randY].get() != "":
-                self.vnosi[randX][randY].delete(0, 'end')
-                stevec+=1        
+                self.vnosi[randX][randY].delete(0, "end")
+                stevec += 1        
 
     def preberi_iz_datoteke(self):
         self.vnosi = []
